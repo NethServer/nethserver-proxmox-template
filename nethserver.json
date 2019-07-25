@@ -1,0 +1,37 @@
+{
+  "variables":
+    {
+      "version": "1810.01",
+      "iso_url": "local:iso/nethserver-7.6.1810-x86_64.iso",
+      "node_name": "{{ env `PROXMOX_NODE` }}"
+    },
+  "builders":[{
+      "boot_command": ["<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ks.cfg<enter><wait>"],
+      "http_directory":"config",
+      "boot_wait": "10s",
+      "ssh_timeout": "30m",
+      "ssh_username": "root",
+      "ssh_password": "Nethesis,1234",
+      "template_name": "nethserver7-{{build_name}}-{{user `version`}}",
+      "node": "{{user `node_name`}}",
+      "iso_file": "{{ user `iso_url`}}",
+      "unmount_iso": true,
+      "insecure_skip_tls_verify": true,
+      "disks": [
+        {
+          "type": "virtio",
+          "disk_size": "10G",
+          "storage_pool": "local",
+          "storage_pool_type": "directory",
+          "cache_mode": "writethrough",
+          "format": "qcow2"
+        }
+      ],
+      "network_adapters": [
+        {
+          "bridge": "vmbr0"
+        }
+      ],
+      "type": "proxmox"
+    }]
+}
