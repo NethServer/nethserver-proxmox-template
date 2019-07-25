@@ -33,5 +33,10 @@
         }
       ],
       "type": "proxmox"
-    }]
+    }],
+  "provisioners": [{
+    "type": "ansible",
+    "ansible_env_vars": ["ANSIBLE_STDOUT_CALLBACK=debug"],
+    "playbook_file": "ansible/playbook.yml"
+  }]
 }
