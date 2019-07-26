@@ -7,6 +7,7 @@
   yum:
     name:
       - cloud-init
+      - cloud-utils-growpart
     state: present
 
 - name: Copy cloud-init-config
