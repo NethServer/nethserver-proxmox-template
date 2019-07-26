@@ -17,6 +17,7 @@
       "iso_file": "{{ user `iso_url`}}",
       "unmount_iso": true,
       "insecure_skip_tls_verify": true,
+      "memory": "1024",
       "disks": [
         {
           "type": "virtio",
