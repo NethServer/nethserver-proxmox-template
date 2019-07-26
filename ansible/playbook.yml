@@ -1,4 +1,5 @@
 ---
 - hosts: all
   tasks:
+    - import_tasks: tasks/cloud-init.yml
     - import_tasks: tasks/cleanup.yml
